@@ -1,4 +1,4 @@
-package com.redhat.infinispan.training.route;
+package com.redhat.camel.training.route;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.http.MediaType;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * <pre>
- *  com.redhat.infinispan.training.route.HelloWorldRoute
+ *  com.redhat.camel.training.route.HelloWorldRoute
  * </pre>
  *
  * @author Muhammad Edwin < edwin at redhat dot com >

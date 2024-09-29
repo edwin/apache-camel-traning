@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.redhat.infinispan.training</groupId>
+    <groupId>com.redhat.camel.training</groupId>
     <artifactId>spring-boot-and-camel-hello-world</artifactId>
     <version>1.0-SNAPSHOT</version>
 
