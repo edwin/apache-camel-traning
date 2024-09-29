@@ -13,4 +13,17 @@ import org.apache.camel.builder.RouteBuilder;
  */
 @ApplicationScoped
 public class HelloWorldRoute extends RouteBuilder {
+    @Override
+    public void configure() throws Exception {
+        rest("/api")
+                .get("/hello-world")
+                .produces("application/json")
+                .to("direct:hello-world");
+
+        from("direct:hello-world")
+                .routeId("hello-world-api")
+                .log("calling getHelloWorld")
+                .setBody(constant("{\"hello\":\"world\"}"));
+
+    }
 }
