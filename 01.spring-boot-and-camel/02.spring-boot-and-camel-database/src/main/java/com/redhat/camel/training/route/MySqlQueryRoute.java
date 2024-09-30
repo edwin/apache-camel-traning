@@ -1,5 +1,7 @@
 package com.redhat.camel.training.route;
 
+import com.redhat.camel.training.model.Employee;
+import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.springframework.http.MediaType;
@@ -20,7 +22,9 @@ public class MySqlQueryRoute extends RouteBuilder {
         rest()
                 .get("/employee/{id}")
                     .produces(MediaType.APPLICATION_JSON_VALUE)
-                    .to("direct:query-employee");
+                    .to("direct:query-employee")
+                .post("/employee")
+                    .to("direct:insert-employee");
 
         from("direct:query-employee")
                 .routeId("query-mysql-table-employee")
@@ -35,5 +39,15 @@ public class MySqlQueryRoute extends RouteBuilder {
                 .log("sending response query-mysql-table-employee to frontend as json")
                 .marshal()
                 .json(JsonLibrary.Jackson);
+
+        from("direct:insert-employee")
+                .routeId("insert-mysql-table-employee")
+                .log("calling insert-mysql-table-employee")
+                .unmarshal()
+                    .json(JsonLibrary.Jackson, Employee.class)
+                .to("sql:INSERT INTO t_employee (gender, birthdate, id, firstname, lastname) " +
+                        "VALUES (:#${body.gender}, :#${body.birthdate}, null, :#${body.firstname}, :#${body.lastname})")
+                .log("sending response insert-mysql-table-employee to frontend")
+                .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));
     }
 }

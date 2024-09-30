@@ -27,7 +27,7 @@ $ mvn clean package -s settings.xml
 
 ## How to Test
 ```
- curl -kv http://localhost:8080/api/employee/1
+$ curl -kv http://localhost:8080/api/employee/1
 *   Trying [::1]:8080...
 * Connected to localhost (::1) port 8080
 > GET /api/employee/1 HTTP/1.1
@@ -42,4 +42,25 @@ $ mvn clean package -s settings.xml
 <
 * Connection #0 to host localhost left intact
 [{"gender":"M","birthdate":1724814030000,"id":1,"firstname":"random","lastname":"name"}]  
+```
+
+```
+$ curl -X POST -kv http://localhost:8080/api/employee -d '{"firstname":"gabriel","lastname":"batistuta","gender":"M","birthdate":"2024-08-20"}' -H "Content-Type: application/json"
+*   Trying [::1]:8080...
+* Connected to localhost (::1) port 8080
+> POST /api/employee HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/8.4.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 84
+>
+< HTTP/1.1 201
+< accept: */*
+< user-agent: curl/8.4.0
+< Content-Type: application/json
+< Content-Length: 0
+< Date: Mon, 30 Sep 2024 04:34:40 GMT
+<
+* Connection #0 to host localhost left intact
 ```
