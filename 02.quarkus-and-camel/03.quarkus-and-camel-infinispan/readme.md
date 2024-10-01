@@ -1,4 +1,4 @@
-# Remote Infinispan, Spring Boot, and Apache Camel 4
+# Remote Infinispan, Quarkus, and Apache Camel 4
 
 ## Java Version
 Java version being used is Java 17
